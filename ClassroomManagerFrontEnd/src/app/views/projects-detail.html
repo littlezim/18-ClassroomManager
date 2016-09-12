@@ -1,0 +1,72 @@
+<div class="panel panel-success" ng-if="projectDetail.projectId != null">
+  <div class="panel-heading">
+    <h3 class="panel-title">Assign This Project</h3>
+  </div>
+
+  <div class="panel-body">
+    Select a Student
+	<div class="row">
+	  <div class="col-lg-6">
+	    <div class="input-group">
+			<select class="form-control" 
+					ng-options="student.firstName +' ' + student.lastName for student in projectDetail.students" 
+					ng-model="projectDetail.newstuff">
+			</select>
+		    <span class="input-group-btn">
+		      <button class="btn btn-primary" type="button" ng-click="projectDetail.addAssignments(projectDetail.projects.projectID)">Assign</button>
+		    </span>	      
+	    </div>
+	  </div>
+	</div>
+  </div>
+</div>
+
+<div class="panel panel-info" ng-if="projectDetail.projectId != null">
+	<div class="panel-heading">
+		<h3 class="panel-title">Assigned To</h3>
+	</div>
+
+	<div class="panel-body">
+		<div class="col-sm-6">
+			<strong>Name</strong>
+		</div>
+		<div class="col-sm-6">
+			<strong>Grade</strong>
+		</div>
+		<hr style="height : 3px; border : none; color : #D9D9D9; background-color : #D9D9D9;" />
+
+		<table class="table table-striped">
+	    	<tr ng-repeat="student in projectDetail.projects.assignments">
+	    		<td class="col-sm-6">{{student.student.firstName}} {{student.student.lastName}}</td>
+	    		<td class="col-sm-6" ng-if="student.grade != null">{{student.grade}}</td>
+	    		<td class="col-sm-6" ng-if="student.grade == null">No Grade Yet</td>
+	    	</tr>
+		</table>
+	</div>
+</div>
+
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h3 class="panel-title" ng-if="projectDetail.projectId != null">Edit Project</h3>
+		<h3 class="panel-title" ng-if="projectDetail.projectId == null">Add Project</h3>
+	</div>
+
+	<div class="panel-body">
+		<div class="form-group col-sm-12">
+	    	<label>Name</label>
+	    	<input type="text" class="form-control" ng-model="projectDetail.projects.name">
+		</div>
+		<div class="form-group col-sm-12">
+	    	<label>Description</label>
+	    	<textarea class="form-control" rows="3" ng-model="projectDetail.projects.description"></textarea>
+		</div>
+	</div>
+
+	<div class="panel-footer">
+		<button class="btn btn-primary pull-right" ng-if="projectDetail.projectId != null" type="button"
+				ng-click="projectDetail.updateProjects(projectDetail.projects)">Save</button>
+		<button class="btn btn-primary pull-right" ng-if="projectDetail.projectId == null" type="button"
+				ng-click="projectDetail.addProjects(projectDetail.projects)">Save</button>
+		<div class="clearfix"></div>
+	</div>
+</div>

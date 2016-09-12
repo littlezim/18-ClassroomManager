@@ -1,0 +1,24 @@
+<div class= "col-sm-12 col-xs-12">
+	<div class="panel panel-primary">
+	  <div class="panel-heading">
+	  		<div class="panel-title pull-left">Projects</div>
+		    <button class="btn btn-success pull-right" ui-sref="project.detail">Add Project</button>
+		    <div class="clearfix"></div>
+	  </div>
+	  <div class="panel-body">
+	    <table class="table table-striped">
+	    	<tr>
+	    		<td class="col-sm-3">Project Name</td>
+	    		<td class="col-sm-3">Assignment Count</td>
+	    		<td class="col-sm-3"></td>
+	    	</tr>
+	    	<tr ng-repeat="project in projectGrid.projects"> <!-- ng-repeat here -->
+	    		<td class="col-sm-3">{{project.name}}</td>
+	    		<td class="col-sm-7">{{project.assignments.length}}</td>
+	    		<td class="btn btn-primary" ui-sref="project.detail({projectId : project.projectID})">Edit</td>
+	    		<td class="btn btn-danger" ng-click="projectGrid.deleteProjects(project.projectID)">Delete</td>
+	    	<tr>
+		</table>
+	  </div>
+	</div>
+</div>
